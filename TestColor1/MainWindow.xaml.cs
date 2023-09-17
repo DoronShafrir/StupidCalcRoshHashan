@@ -15,6 +15,7 @@ using System.Windows.Media.Media3D;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace TestColor1
 {
@@ -41,7 +42,7 @@ namespace TestColor1
                 "Item 3"
             };
 
-            myList.ItemsSource = itemList;
+            //myList.ItemsSource = itemList;
         }
         public class Calc1
         {
@@ -76,13 +77,13 @@ namespace TestColor1
         }
         private void Sub_Click(object sender, RoutedEventArgs e)
         {
-            string v1 = Num1.Text;
-            string v2 = Num2.Text;
+            //string v1 = Num1.Text;
+            //string v2 = Num2.Text;
 
             try
             {
-                int sum1 = int.Parse(v1);
-                int sum2 = int.Parse(v2);
+                int sum1 = int.Parse(Num1.Text);
+                int sum2 = int.Parse(Num2.Text);
                 Display.Text = (sum1 - sum2).ToString();
             }
             catch
@@ -139,6 +140,44 @@ namespace TestColor1
                 return false;
             }
         }
-        
+
+        private void Add_Click(object sender, RoutedEventArgs e)
+        {
+            
+             Border b = new Border();
+            b.HorizontalAlignment = HorizontalAlignment.Left;
+            b.BorderThickness = new Thickness(1);
+            b.BorderBrush = new SolidColorBrush(Colors.Salmon);
+            b.Height = 100;
+            b.Width = 45;
+            b.CornerRadius = new CornerRadius(5);
+            b.Margin = new Thickness(5);
+            
+            StackPanel s1 = new StackPanel();
+            s1.Orientation = Orientation.Vertical;
+            s1.Width = 40;
+            s1.VerticalAlignment = VerticalAlignment.Top;
+            b.Child = s1;
+
+           TextBlock t1 = new TextBlock();
+            t1.Text = Num1.Text;
+            s1.Children.Add(t1);
+            TextBlock t2 = new TextBlock();
+            t2.Text = "+";
+            s1.Children.Add(t2);
+            TextBlock t3 = new TextBlock();
+            t3.Text = Num2.Text;
+            s1.Children.Add(t3);
+            TextBlock t4 = new TextBlock();
+            t4.Text = "------------";
+            s1.Children.Add(t4);
+            TextBlock t5 = new TextBlock();
+            t5.Text = Display.Text;
+            s1.Children.Add(t5);
+
+
+            this.wPanel.Children.Add(b);
+        }
+
     }
 }
